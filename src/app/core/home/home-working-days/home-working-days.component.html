@@ -1,0 +1,11 @@
+<section class="py-3 bg-light">
+  <div class="container">
+    <h1>Godziny otwarcia</h1>
+    <div class="d-flex justify-content-center p-3 flex-wrap">
+      <div class="rounded-circle circle text-white m-1" [ngClass]="day.hours ? 'bg-primary' : 'bg-secondary'" *ngFor="let day of days">
+        <p class="mt-4 mb-1 font-weight-bold">{{day.name}}</p>
+        <p class="small">{{day.hours}}</p>
+      </div>
+    </div>
+  </div>
+</section>
