@@ -7,6 +7,7 @@ import { FooterComponent } from './footer/footer.component';
 import { SharedModule } from 'src/app/shared/shared/shared.module';
 import { HomeCarouselComponent } from './home/home-carousel/home-carousel.component';
 import { HomeWorkingDaysComponent } from './home/home-working-days/home-working-days.component';
+import { EmployeesListComponent } from './home/employees-list/employees-list.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { HomeWorkingDaysComponent } from './home/home-working-days/home-working-
     HomeComponent,
     FooterComponent,
     HomeCarouselComponent,
-    HomeWorkingDaysComponent
+    HomeWorkingDaysComponent,
+    EmployeesListComponent
   ],
   imports: [
     AppRoutingModule,

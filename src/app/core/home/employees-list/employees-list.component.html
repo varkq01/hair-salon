@@ -1,0 +1,14 @@
+<section class="py-3 bg-light">
+  <div class="container">
+    <h1>Nasza zespół</h1>
+    <div class="row mt-3 align-items-center" *ngFor="let employee of employees">
+      <div class="col-12 col-sm-4">
+        <img class="d-block w-100" [src]="employee.image" alt="{{employee.lastName + 'employee photo'}} ">
+      </div>
+      <div class="col-12 col-sm-8">
+        <h2>{{employee.firstName}} {{employee.lastName}}</h2>
+        <p>{{employee.description}}</p>
+      </div>      
+    </div>
+  </div>
+</section>
