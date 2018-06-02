@@ -2,14 +2,9 @@
   <div class="container">
     <h1 class="text-center">Galeria prac</h1>
     <div class="row">
-      <div class="col-12 col-sm-6 col-md-4 p-0" *ngFor="let i of [1,2,3,4,5,6]">
-        <div class="img-container m-sm-1">
-          <img src="assets/images/work{{i}}.jpg" alt="" class="image d-block w-100">
-          <div class="img-hover-box">
-            <a href="#" class="btn btn-outline-primary"><span class="fa fa-search-plus"></span></a>
-          </div>
-        </div>
+      <div class="col-12 col-sm-6 col-md-4 p-0" *ngFor="let image of images">
+        <app-image [source]="image.source" [description]="image.description" (onImgClick)="showImagePreview($event)"></app-image>
       </div>
     </div>
-  </div>
+  </div> 
 </section>

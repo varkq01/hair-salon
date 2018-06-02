@@ -1,8 +1,21 @@
-li {
-    padding-left: 2rem;
+.contact-list {
+        li {
+        padding-left: 2rem;
+        span {
+            position: absolute;
+            left: 0px;
+            top: .2rem;
+        }
+    }
+}
+
+.link-social {
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    vertical-align: middle;
+
     span {
-        position: absolute;
-        left: 0px;
-        top: .2rem;
+        margin-top: 4px;
     }
 }

@@ -9,6 +9,10 @@ import { HomeCarouselComponent } from './home/home-carousel/home-carousel.compon
 import { HomeWorkingDaysComponent } from './home/home-working-days/home-working-days.component';
 import { EmployeesListComponent } from './home/employees-list/employees-list.component';
 import { GalleryComponent } from './home/gallery/gallery.component';
+import { MapComponent } from './home/map/map.component';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { ImagePreviewComponent } from './home/gallery/image-preview/image-preview.component';
+import { ImageComponent } from './home/gallery/image/image.component';
 
 @NgModule({
   declarations: [
@@ -18,11 +22,15 @@ import { GalleryComponent } from './home/gallery/gallery.component';
     HomeCarouselComponent,
     HomeWorkingDaysComponent,
     EmployeesListComponent,
-    GalleryComponent
+    GalleryComponent,
+    MapComponent,
+    ImagePreviewComponent,
+    ImageComponent
   ],
   imports: [
     AppRoutingModule,
-    SharedModule
+    SharedModule,
+    ModalModule.forRoot()
   ],
   exports: [
     AppRoutingModule,
@@ -30,5 +38,8 @@ import { GalleryComponent } from './home/gallery/gallery.component';
     HomeComponent,
     FooterComponent
   ],
+  entryComponents: [
+    ImagePreviewComponent
+  ]
 })
 export class CoreModule {}
