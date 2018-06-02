@@ -18,7 +18,7 @@ export class EmployeesListComponent implements OnInit {
   }, {
     firstName: 'Agata',
     lastName: 'Papuga',
-    image: 'assets/images/beauty.jpg',
+    image: 'assets/images/agata.jpg',
     description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sapien nisi, posuere id ipsum sit amet, 
     venenatis ultricies ipsum. Maecenas in luctus purus. Praesent laoreet mi urna, nec consectetur est scelerisque id. 
     Aliquam tortor nunc, fringilla eu congue non, vehicula non turpis. Nam non felis fermentum, pellentesque turpis nec, euismod erat.`,
