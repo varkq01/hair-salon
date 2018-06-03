@@ -8,9 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class ServicesListComponent implements OnInit {
   @Input() services;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }
