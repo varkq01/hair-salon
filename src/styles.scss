@@ -8,3 +8,7 @@
 body {
     padding-top: 57px;
 }
+
+.view-height {
+    min-height: calc(100vh - 57px);
+}

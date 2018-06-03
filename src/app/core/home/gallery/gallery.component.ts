@@ -9,40 +9,45 @@ import { ImagePreviewComponent } from 'src/app/core/home/gallery/image-preview/i
   styleUrls: ['./gallery.component.scss']
 })
 export class GalleryComponent {
-  public images = [{
-    source: '/assets/images/work1.jpg',
-    description: 'Zdjęcie przedstawia nowa fryzurę klientki'
-  },{
-    source: '/assets/images/work2.jpg',
-    description: 'Zdjęcie przedstawia nowa fryzurę klientki'
-  },{
-    source: '/assets/images/work3.jpg',
-    description: 'Zdjęcie przedstawia nowa fryzurę klientki'
-  },{
-    source: '/assets/images/work4.jpg',
-    description: 'Zdjęcie przedstawia nowa fryzurę klientki'
-  },{
-    source: '/assets/images/work5.jpg',
-    description: 'Zdjęcie przedstawia nowa fryzurę klientki'
-  },{
-    source: '/assets/images/work6.jpg',
-    description: 'Zdjęcie przedstawia nowa fryzurę klientki'
-  }]
+  public images = [
+    {
+      source: '/assets/images/work1.jpg',
+      description: 'Zdjęcie przedstawia nowa fryzurę klientki'
+    },
+    {
+      source: '/assets/images/work2.jpg',
+      description: 'Zdjęcie przedstawia nowa fryzurę klientki'
+    },
+    {
+      source: '/assets/images/work3.jpg',
+      description: 'Zdjęcie przedstawia nowa fryzurę klientki'
+    },
+    {
+      source: '/assets/images/work4.jpg',
+      description: 'Zdjęcie przedstawia nowa fryzurę klientki'
+    },
+    {
+      source: '/assets/images/work5.jpg',
+      description: 'Zdjęcie przedstawia nowa fryzurę klientki'
+    },
+    {
+      source: '/assets/images/work6.jpg',
+      description: 'Zdjęcie przedstawia nowa fryzurę klientki'
+    }
+  ];
 
   modalRef: BsModalRef;
   constructor(private modalService: BsModalService) {}
- 
-  showImagePreview(image: {source: string, description: string}) {
+
+  showImagePreview(image: { source: string; description: string }) {
     const initialState = {
       source: image.source,
-      description: image.description,
+      description: image.description
     };
 
     this.modalRef = this.modalService.show(ImagePreviewComponent, {
-      initialState, 
-      class: 'modal-lg modal-image'
+      initialState,
+      class: 'modal-lg modal-image modal-dialog-centered'
     });
   }
 }
-
-

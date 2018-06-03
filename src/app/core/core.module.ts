@@ -13,6 +13,9 @@ import { MapComponent } from './home/map/map.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { ImagePreviewComponent } from './home/gallery/image-preview/image-preview.component';
 import { ImageComponent } from './home/gallery/image/image.component';
+import { LoginComponent } from './login/login.component';
+import { PasswordResetComponent } from './password-reset/password-reset.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +28,10 @@ import { ImageComponent } from './home/gallery/image/image.component';
     GalleryComponent,
     MapComponent,
     ImagePreviewComponent,
-    ImageComponent
+    ImageComponent,
+    LoginComponent,
+    PasswordResetComponent,
+    RegisterComponent
   ],
   imports: [AppRoutingModule, SharedModule, ModalModule.forRoot()],
   exports: [
@@ -35,6 +41,6 @@ import { ImageComponent } from './home/gallery/image/image.component';
     FooterComponent,
     MapComponent
   ],
-  entryComponents: [ImagePreviewComponent]
+  entryComponents: [ImagePreviewComponent, LoginComponent, RegisterComponent, PasswordResetComponent]
 })
 export class CoreModule {}

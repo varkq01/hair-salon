@@ -1,6 +1,6 @@
 <header>
-  <nav id="header" class="navbar border-bottom border-success fixed-top navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" routerLink="/">Hair Salon</a>
+  <nav id="header" class="navbar border-bottom border-success fixed-top navbar-expand-md navbar-light bg-light">
+    <a class="navbar-brand" routerLink="/home">Hair Salon</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
       aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -8,7 +8,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-          <a class="nav-link" routerLink="/">Home</a>
+          <a class="nav-link" routerLink="/home">Home</a>
         </li>
         <li class="nav-item" routerLinkActive="active">
           <a class="nav-link" routerLink="/services">Usługi</a>
@@ -17,7 +17,7 @@
           <a class="nav-link" routerLink="/contact">Kontakt</a>
         </li>
       </ul>
-      <button class="btn btn-outline-success" (click)="isLoggedIn = true" role="button" *ngIf="!isLoggedIn">
+      <button class="btn btn-outline-success" (click)="onLogin()" role="button" *ngIf="!isLoggedIn">
         Zaloguj
       </button>
 

@@ -1,0 +1,36 @@
+<div class="modal-header">
+  <h4 class="modal-title pull-left">Logowanie</h4>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="onClose()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body px-0">
+  <div class="container-fluid">
+    <form>
+      <div class="row">
+        <div class="col-12">
+          <div class="form-group">
+            <label for="loginEmail">Email</label>
+            <input type="email" class="form-control" id="loginEmail" aria-describedby="emailHelp">
+            <small id="emailHelp" class="form-text text-muted">Nie udostępniamy Twoich danych osobom trzecim.</small>
+          </div>
+          <div class="form-group">
+            <label for="loginPassword">Hasło</label>
+            <input type="password" class="form-control" id="loginPassword">
+          </div>
+        </div>
+        <div class="col-12">
+          <button type="submit" class="btn btn-block btn-lg btn-primary">Zaloguj</button>
+          <div class="d-flex justify-content-center">
+            <a class="btn btn-link btn-sm" (click)="onRegister()">
+              Zarejestruj
+            </a>
+            <a class="btn btn-link btn-sm" (click)="onReset()">
+              Przypomnij hasło
+            </a>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

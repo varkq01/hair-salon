@@ -1,0 +1,38 @@
+<div class="modal-header">
+  <h4 class="modal-title pull-left">Rejestracja</h4>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="onClose()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body px-0">
+  <div class="container-fluid">
+    <form>
+      <div class="row">
+        <div class="col-12">
+          <div class="form-group">
+            <label for="firstName">Imię</label>
+            <input type="email" class="form-control" id="firstName" aria-describedby="emailHelp">
+          </div>
+          <div class="form-group">
+            <label for="lastName">Nazwisko</label>
+            <input type="email" class="form-control" id="lastName" aria-describedby="emailHelp">
+          </div>
+          <div class="form-group">
+            <label for="yourEmail">Email</label>
+            <input type="email" class="form-control" id="yourEmail" aria-describedby="emailHelp">
+            <small id="emailHelp" class="form-text text-muted">Nie udostępniamy Twoich danych osobom trzecim.</small>
+          </div>
+          <div class="form-group">
+            <label for="password">Hasło</label>
+            <input type="password" class="form-control" id="password">
+            <label for="confirmPassword">Potwierdź hasło</label>
+            <input type="password" class="form-control" id="confirmPassword">
+          </div>
+        </div>
+        <div class="col-12 d-flex flex-column">
+          <button type="submit" class="btn btn-lg btn-primary">Zarejestruj</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
