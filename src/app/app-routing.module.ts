@@ -7,12 +7,13 @@ import { HairdressingComponent } from './services/hairdressing/hairdressing.comp
 import { CosmeticComponent } from './services/cosmetic/cosmetic.component';
 
 const appRoutes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: 'home', component: HomeComponent},
   { path: 'services', component: ServicesComponent, children: [
     { path: '', redirectTo: 'hairdressing', pathMatch: 'full'},
     { path: 'hairdressing', component: HairdressingComponent },
     { path: 'cosmetic', component: CosmeticComponent }    
-  ]}
+  ]},
+  { path: '**', redirectTo: 'home' }
 ];
 
 @NgModule({

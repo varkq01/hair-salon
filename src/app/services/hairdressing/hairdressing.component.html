@@ -1,24 +1,20 @@
 <div class="row">
-  <div class="col-12 col-sm-6 d-flex justify-content-center">
-    <div class="d-flex justify-content-center flex-column">
-      <div class="icon-container rounded-circle bg-light">
+  <div class="col-12 col-sm-6 ">
+    <div class="d-flex flex-column align-items-center">
+      <div class="icon-container rounded-circle bg-white">
         <img src="assets/icons/woman.png" class="d-block w-100 rounded-circle">
       </div>
       <h2>Dla Niej</h2>
     </div>
-    <ul class="list-unstyled">
-      <li></li>
-    </ul>
+    <app-services-list [services]="services"></app-services-list>
   </div>
-  <div class="col-12 col-sm-6 d-flex justify-content-center">
-    <div class="d-flex justify-content-center flex-column">
-        <div class="icon-container rounded-circle bg-light">
+  <div class="col-12 col-sm-6 ">
+    <div class="d-flex flex-column align-items-center">
+        <div class="icon-container rounded-circle bg-white">
           <img src="assets/icons/man.png" class="d-block w-100 rounded-circle">
         </div>
         <h2>Dla Niego</h2>
       </div>
-      <ul class="list-unstyled">
-        <li></li>
-      </ul>
+      <app-services-list [services]="services"></app-services-list>
   </div>
 </div>
