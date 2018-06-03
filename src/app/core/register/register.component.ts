@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalService } from '../modal.service';
+import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-register',
@@ -7,14 +7,14 @@ import { ModalService } from '../modal.service';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
+  constructor(
+    private modalService: NgbModal,
+    private activeModal: NgbActiveModal
+  ) {}
 
-  constructor(private modalService: ModalService) {}
-
-
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   onClose() {
-    this.modalService.hideByName('registerModal');
+    this.activeModal.dismiss();
   }
 }

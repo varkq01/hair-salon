@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginComponent } from '../login/login.component';
-import { ModalService } from '../modal.service';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-header',
@@ -10,18 +9,21 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 })
 export class HeaderComponent implements OnInit {
   public isLoggedIn = false;
-  modalRef: BsModalRef;
+  modalRef: NgbModalRef;
 
-  constructor(
-    private modalService: ModalService,
-    private bsModal: BsModalService
-  ) {}
+  constructor(private modalService: NgbModal) {}
 
   ngOnInit() {}
 
   onLogin() {
-    this.modalRef = this.modalService.open('loginModal', LoginComponent, {
-      class: 'modal-dialog-centered'
+    this.modalRef = this.modalService.open(LoginComponent, {
+      centered: true
     });
+
+    this.modalRef.result
+      .then(result => {
+        this.isLoggedIn = true;
+      })
+      .catch(reason => console.log(reason));
   }
 }

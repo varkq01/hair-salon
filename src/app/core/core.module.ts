@@ -10,12 +10,13 @@ import { HomeWorkingDaysComponent } from './home/home-working-days/home-working-
 import { EmployeesListComponent } from './home/employees-list/employees-list.component';
 import { GalleryComponent } from './home/gallery/gallery.component';
 import { MapComponent } from './home/map/map.component';
-import { ModalModule } from 'ngx-bootstrap/modal';
 import { ImagePreviewComponent } from './home/gallery/image-preview/image-preview.component';
 import { ImageComponent } from './home/gallery/image/image.component';
 import { LoginComponent } from './login/login.component';
 import { PasswordResetComponent } from './password-reset/password-reset.component';
 import { RegisterComponent } from './register/register.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,7 @@ import { RegisterComponent } from './register/register.component';
     PasswordResetComponent,
     RegisterComponent
   ],
-  imports: [AppRoutingModule, SharedModule, ModalModule.forRoot()],
+  imports: [AppRoutingModule, SharedModule, NgbModule.forRoot(), FormsModule],
   exports: [
     AppRoutingModule,
     HeaderComponent,
@@ -41,6 +42,11 @@ import { RegisterComponent } from './register/register.component';
     FooterComponent,
     MapComponent
   ],
-  entryComponents: [ImagePreviewComponent, LoginComponent, RegisterComponent, PasswordResetComponent]
+  entryComponents: [
+    ImagePreviewComponent,
+    LoginComponent,
+    RegisterComponent,
+    PasswordResetComponent
+  ]
 })
 export class CoreModule {}

@@ -7,6 +7,7 @@ import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { ServicesModule } from './services/services.module';
 import { ContactModule } from './contact/contact.module';
+import { HistoryModule } from './visits-history/history.module';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { ContactModule } from './contact/contact.module';
     CoreModule,
     SharedModule,
     ServicesModule,
-    ContactModule
+    ContactModule,
+    HistoryModule
   ],
   providers: [],
   bootstrap: [AppComponent]

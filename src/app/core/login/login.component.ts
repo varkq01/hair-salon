@@ -1,46 +1,39 @@
 import { Component } from '@angular/core';
-import { BsModalRef } from 'ngx-bootstrap/modal';
 import { PasswordResetComponent } from '../password-reset/password-reset.component';
 import { RegisterComponent } from '../register/register.component';
-import { ModalService } from '../modal.service';
 
+import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-
-  passwordModal: BsModalRef;
-  registerModal: BsModalRef;
-
-  constructor(private modalService: ModalService) {}
-
+  constructor(
+    private modalService: NgbModal,
+    private activeModal: NgbActiveModal
+  ) {}
   onReset() {
-    this.modalService.hideByName('loginModal');
+    this.activeModal.dismiss();
 
-    this.passwordModal = this.modalService.open(
-      'passwordModal',
-      PasswordResetComponent,
-      {
-        class: 'modal-dialog-centered'
-      }
-    );
+    this.modalService.open(PasswordResetComponent, {
+      centered: true
+    });
   }
 
   onClose() {
-    this.modalService.hideByName('loginModal');
+    this.activeModal.dismiss();
+  }
+
+  onLogin() {
+    this.activeModal.close('ok');
   }
 
   onRegister() {
-    this.modalService.hideByName('loginModal');
+    this.activeModal.dismiss();
 
-    this.registerModal = this.modalService.open(
-      'registerModal',
-      RegisterComponent,
-      {
-        class: 'modal-dialog-centered'
-      }
-    );
+    this.modalService.open(RegisterComponent, {
+      centered: true
+    });
   }
 }

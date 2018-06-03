@@ -6,7 +6,7 @@
 </div>
 <div class="modal-body px-0">
   <div class="container-fluid">
-    <form>
+    <form #f="ngForm" (ngSubmit)="onLogin()">
       <div class="row">
         <div class="col-12">
           <div class="form-group">

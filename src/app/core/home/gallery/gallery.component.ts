@@ -1,7 +1,6 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
-import { BsModalService } from 'ngx-bootstrap/modal';
-import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import { ImagePreviewComponent } from 'src/app/core/home/gallery/image-preview/image-preview.component';
+import { NgbModalRef, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-gallery',
@@ -36,8 +35,8 @@ export class GalleryComponent {
     }
   ];
 
-  modalRef: BsModalRef;
-  constructor(private modalService: BsModalService) {}
+  modalRef: NgbModalRef;
+  constructor(private modalService: NgbModal) {}
 
   showImagePreview(image: { source: string; description: string }) {
     const initialState = {
@@ -45,9 +44,13 @@ export class GalleryComponent {
       description: image.description
     };
 
-    this.modalRef = this.modalService.show(ImagePreviewComponent, {
-      initialState,
-      class: 'modal-lg modal-image modal-dialog-centered'
+    this.modalRef = this.modalService.open(ImagePreviewComponent, {
+      windowClass: 'modal-image',
+      size: 'lg',
+      centered: true
     });
+
+    this.modalRef.componentInstance.source = image.source;
+    this.modalRef.componentInstance.description = image.description;
   }
 }

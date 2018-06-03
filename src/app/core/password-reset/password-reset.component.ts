@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalService } from '../modal.service';
+import { NgbModal, NgbActiveModal,  } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-password-reset',
@@ -7,14 +7,14 @@ import { ModalService } from '../modal.service';
   styleUrls: ['./password-reset.component.scss']
 })
 export class PasswordResetComponent implements OnInit {
+  constructor(
+    private modalService: NgbModal,
+    private activeModal: NgbActiveModal
+  ) {}
 
-  constructor(private modalService: ModalService) {}
-
-
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   onClose() {
-    this.modalService.hideByName('passwordModal');
+    this.activeModal.dismiss();
   }
 }
