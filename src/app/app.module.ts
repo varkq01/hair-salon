@@ -8,13 +8,15 @@ import { SharedModule } from './shared/shared.module';
 import { ServicesModule } from './services/services.module';
 import { ContactModule } from './contact/contact.module';
 import { HistoryModule } from './visits-history/history.module';
+import { HttpClientModule } from '@angular/common/http';
+import { SessionService } from './core/session.service';
+import { GlobalService } from './core/global.service';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     CoreModule,
     SharedModule,
@@ -22,7 +24,7 @@ import { HistoryModule } from './visits-history/history.module';
     ContactModule,
     HistoryModule
   ],
-  providers: [],
+  providers: [SessionService, GlobalService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

@@ -1,6 +1,7 @@
 <header>
   <nav id="header" class="navbar border-bottom border-success fixed-top navbar-expand-md navbar-light bg-light">
     <a class="navbar-brand" routerLink="home">Hair Salon</a>
+    <app-spinner *ngIf="global.pendingRequests.length > 0"></app-spinner>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
       aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -25,13 +26,13 @@
         <div class="dropdown">
           <button class="btn btn-outline-success dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
             aria-expanded="false">
-            Witaj, Bartek!
+            {{user.email}}
           </button>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="#">Dashboard</a>
             <a class="dropdown-item" routerLink="/history">Historia wizyt</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#" (click)="isLoggedIn = false">Wyloguj</a>
+            <a class="dropdown-item" (click)="onLogout()">Wyloguj</a>
           </div>
         </div>
       </ng-template>

@@ -6,7 +6,6 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
 import { FooterComponent } from './footer/footer.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { HomeCarouselComponent } from './home/home-carousel/home-carousel.component';
-import { HomeWorkingDaysComponent } from './home/home-working-days/home-working-days.component';
 import { EmployeesListComponent } from './home/employees-list/employees-list.component';
 import { GalleryComponent } from './home/gallery/gallery.component';
 import { MapComponent } from './home/map/map.component';
@@ -17,6 +16,8 @@ import { PasswordResetComponent } from './password-reset/password-reset.componen
 import { RegisterComponent } from './register/register.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -24,7 +25,6 @@ import { FormsModule } from '@angular/forms';
     HomeComponent,
     FooterComponent,
     HomeCarouselComponent,
-    HomeWorkingDaysComponent,
     EmployeesListComponent,
     GalleryComponent,
     MapComponent,
@@ -34,7 +34,7 @@ import { FormsModule } from '@angular/forms';
     PasswordResetComponent,
     RegisterComponent
   ],
-  imports: [AppRoutingModule, SharedModule, NgbModule.forRoot(), FormsModule],
+  imports: [AppRoutingModule, SharedModule, NgbModule.forRoot(), FormsModule, ReactiveFormsModule],
   exports: [
     AppRoutingModule,
     HeaderComponent,

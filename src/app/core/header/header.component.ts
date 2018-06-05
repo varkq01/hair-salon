@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginComponent } from '../login/login.component';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { GlobalService } from '../global.service';
+import { SessionService } from '../session.service';
 
 @Component({
   selector: 'app-header',
@@ -10,10 +12,17 @@ import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 export class HeaderComponent implements OnInit {
   public isLoggedIn = false;
   modalRef: NgbModalRef;
+  public user;
 
-  constructor(private modalService: NgbModal) {}
+  constructor(
+    private modalService: NgbModal,
+    public global: GlobalService,
+    private sessionService: SessionService
+  ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.checkIfLoggedIn();
+  }
 
   onLogin() {
     this.modalRef = this.modalService.open(LoginComponent, {
@@ -22,8 +31,24 @@ export class HeaderComponent implements OnInit {
 
     this.modalRef.result
       .then(result => {
-        this.isLoggedIn = true;
+        this.checkIfLoggedIn();
       })
       .catch(reason => console.log(reason));
+  }
+
+  onLogout() {
+    this.sessionService.logout().subscribe(resp => {
+      this.isLoggedIn = false;
+
+      // todo emit event that user has been logged out
+    });
+  }
+
+  checkIfLoggedIn() {
+    this.user = this.global.getUser();
+    const token = this.global.getAuthToken();
+    if (this.user && token) {
+      this.isLoggedIn = true;
+    }
   }
 }

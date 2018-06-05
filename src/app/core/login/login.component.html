@@ -6,21 +6,32 @@
 </div>
 <div class="modal-body px-0">
   <div class="container-fluid">
-    <form #f="ngForm" (ngSubmit)="onLogin()">
+    <form [formGroup]="form" (ngSubmit)="onLogin()" novalidate>
+      <div class="alert alert-danger" *ngIf="loginError">{{loginError}}</div>
       <div class="row">
         <div class="col-12">
           <div class="form-group">
-            <label for="loginEmail">Email</label>
-            <input type="email" class="form-control" id="loginEmail" aria-describedby="emailHelp">
-            <small id="emailHelp" class="form-text text-muted">Nie udostępniamy Twoich danych osobom trzecim.</small>
+            <label class="form-label required" for="loginEmail">Email</label>
+            <input type="email" class="form-control " formControlName="email" id="loginEmail" aria-describedby="emailHelp">
+            <small class="text-danger" *ngIf="email.invalid && email.touched">
+              <ng-template [ngIf]="email.errors?.required">Pole wymagane</ng-template>
+              <ng-template [ngIf]="email.errors?.email">Niepoprawny email</ng-template>
+            </small>
           </div>
           <div class="form-group">
             <label for="loginPassword">Hasło</label>
-            <input type="password" class="form-control" id="loginPassword">
+            <input type="password" class="form-control required" formControlName="password" id="loginPassword">
+            <small class="text-danger" *ngIf="password.invalid && password.touched">
+              <ng-template [ngIf]="password.errors?.required">Pole wymagane</ng-template>
+              <ng-template [ngIf]="password.errors?.minlength">Hasło musi mieć 6 znaków</ng-template>
+            </small>
           </div>
         </div>
         <div class="col-12">
-          <button type="submit" class="btn btn-block btn-lg btn-primary">Zaloguj</button>
+          <button type="submit" class="btn btn-block btn-lg btn-primary" [disabled]="form.invalid || isLogging">
+            <ng-template [ngIf]="!isLogging">Zaloguj</ng-template>
+            <app-spinner *ngIf="isLogging"></app-spinner>
+          </button>
           <div class="d-flex justify-content-center">
             <a class="btn btn-link btn-sm" (click)="onRegister()">
               Zarejestruj
