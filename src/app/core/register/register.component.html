@@ -6,31 +6,43 @@
 </div>
 <div class="modal-body px-0">
   <div class="container-fluid">
-    <form>
+    <form [formGroup]="form" (ngSubmit)="onRegister()" novalidate>
+      <div class="alert alert-danger" *ngIf="loginError">{{error}}</div>
       <div class="row">
         <div class="col-12">
           <div class="form-group">
             <label for="firstName">Imię</label>
-            <input type="email" class="form-control" id="firstName" aria-describedby="emailHelp">
+            <input type="text" class="form-control" id="firstName" formControlName="firstName" aria-describedby="emailHelp">
+            <small class="text-danger" *ngIf="firstName.invalid && firstName.touched">
+              <ng-template [ngIf]="firstName.errors?.required">Pole wymagane</ng-template>
+            </small>
           </div>
           <div class="form-group">
             <label for="lastName">Nazwisko</label>
-            <input type="email" class="form-control" id="lastName" aria-describedby="emailHelp">
+            <input type="text" class="form-control" id="lastName" formControlName="lastName" aria-describedby="emailHelp">
+            <small class="text-danger" *ngIf="lastName.invalid && lastName.touched">
+              <ng-template [ngIf]="lastName.errors?.required">Pole wymagane</ng-template>
+            </small>
           </div>
           <div class="form-group">
             <label for="yourEmail">Email</label>
-            <input type="email" class="form-control" id="yourEmail" aria-describedby="emailHelp">
-            <small id="emailHelp" class="form-text text-muted">Nie udostępniamy Twoich danych osobom trzecim.</small>
+            <input type="email" class="form-control" id="yourEmail" formControlName="email" aria-describedby="emailHelp">
+            <small class="text-danger" *ngIf="email.invalid && email.touched">
+              <ng-template [ngIf]="email.errors?.required">Pole wymagane</ng-template>
+              <ng-template [ngIf]="email.errors?.email">Niepoprawny email</ng-template>
+            </small>
           </div>
           <div class="form-group">
             <label for="password">Hasło</label>
-            <input type="password" class="form-control" id="password">
-            <label for="confirmPassword">Potwierdź hasło</label>
-            <input type="password" class="form-control" id="confirmPassword">
+            <input type="password" class="form-control" id="password" formControlName="password">
+            <small class="text-danger" *ngIf="password.invalid && password.touched">
+              <ng-template [ngIf]="password.errors?.required">Pole wymagane</ng-template>
+              <ng-template [ngIf]="password.errors?.minlength">Hasło musi mieć 6 znaków</ng-template>
+            </small>
           </div>
         </div>
         <div class="col-12 d-flex flex-column">
-          <button type="submit" class="btn btn-lg btn-primary">Zarejestruj</button>
+          <button type="submit" class="btn btn-lg btn-primary" [disabled]="form.invalid || isRegistering">Zarejestruj</button>
         </div>
       </div>
     </form>

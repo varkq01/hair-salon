@@ -17,6 +17,7 @@ import { RegisterComponent } from './register/register.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AlertBoxComponent } from './alert-box/alert-box.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     ImageComponent,
     LoginComponent,
     PasswordResetComponent,
-    RegisterComponent
+    RegisterComponent,
+    AlertBoxComponent
   ],
   imports: [AppRoutingModule, SharedModule, NgbModule.forRoot(), FormsModule, ReactiveFormsModule],
   exports: [

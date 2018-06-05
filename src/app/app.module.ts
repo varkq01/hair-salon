@@ -11,6 +11,7 @@ import { HistoryModule } from './visits-history/history.module';
 import { HttpClientModule } from '@angular/common/http';
 import { SessionService } from './core/session.service';
 import { GlobalService } from './core/global.service';
+import { AlertService } from './core/alert-box/alert.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,7 +25,7 @@ import { GlobalService } from './core/global.service';
     ContactModule,
     HistoryModule
   ],
-  providers: [SessionService, GlobalService],
+  providers: [SessionService, GlobalService, AlertService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

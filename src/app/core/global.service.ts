@@ -1,74 +1,68 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Subject } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class GlobalService {
   private apiUrl = 'http://localhost:3000/api';
-  private pendingRequests = [];
+  public pendingRequests = [];
+  public loadingData = new Subject<boolean>();
 
   constructor(private http: HttpClient) {}
 
   public get(url: string, options?) {
     this.pendingRequests.push(url);
 
-    return this.http
-      .get(`${this.apiUrl}${url}`, options || { headers: this.getHeaders() })
-      .pipe(response => {
-        this.deletePendingRequest(url);
-        return response;
-      });
+    return this.http.get(
+      `${this.apiUrl}${url}`,
+      options || { headers: this.getHeaders() }
+    );
   }
 
   public post(url: string, body?, options?) {
     this.pendingRequests.push(url);
     console.log(this.pendingRequests.length);
-    const opt = options || {headers: this.getHeaders()};
-    return this.http
-      .post(
-        `${this.apiUrl}${url}`,
-        body,
-        options || { headers: this.getHeaders() }
-      )
-      .pipe(response => {
-        this.deletePendingRequest(url);
-        return response;
-      });
+    const opt = options || { headers: this.getHeaders() };
+    return this.http.post(
+      `${this.apiUrl}${url}`,
+      body,
+      options || { headers: this.getHeaders() }
+    );
   }
 
   public put(url: string, body?, options?) {
     this.pendingRequests.push(url);
 
-    return this.http
-      .put(`${this.apiUrl}${url}`, options || { headers: this.getHeaders() })
-      .pipe(response => {
-        this.deletePendingRequest(url);
-        return response;
-      });
+    return this.http.put(
+      `${this.apiUrl}${url}`,
+      options || { headers: this.getHeaders() }
+    );
   }
 
   public delete(url: string, options?) {
     this.pendingRequests.push(url);
 
-    return this.http
-      .delete(`${this.apiUrl}${url}`, options || { headers: this.getHeaders() })
-      .pipe(response => {
-        this.deletePendingRequest(url);
-        return response;
-      });
+    return this.http.delete(
+      `${this.apiUrl}${url}`,
+      options || { headers: this.getHeaders() }
+    );
   }
 
   public getHeaders(): HttpHeaders {
-    const token =  this.getAuthToken();
+    const token = this.getAuthToken();
     const headers = new HttpHeaders({
       'x-auth': token
     });
     return headers;
   }
 
-  public setUser(email: string, id: string): void {
-    sessionStorage.setItem('user', JSON.stringify({ email, id }));
+  public setUser(user: {
+    email: string;
+    _id: string;
+    firstName: string;
+    lastName: string;
+  }): void {
+    sessionStorage.setItem('user', JSON.stringify(user));
   }
 
   public getUser() {
@@ -87,10 +81,5 @@ export class GlobalService {
   public clearSession(): void {
     sessionStorage.removeItem('x-auth');
     sessionStorage.removeItem('user');
-  }
-
-  private deletePendingRequest(url: string): void {
-    this.pendingRequests.splice(this.pendingRequests.indexOf(url), 1);
-    console.log(this.pendingRequests.length);    
   }
 }

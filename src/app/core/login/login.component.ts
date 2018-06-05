@@ -7,6 +7,7 @@ import { FormGroup } from '@angular/forms';
 import { HttpResponse } from '@angular/common/http';
 import { GlobalService } from '../global.service';
 import { SessionService } from '../session.service';
+import { AlertService } from '../alert-box/alert.service';
 
 @Component({
   selector: 'app-login',
@@ -24,7 +25,8 @@ export class LoginComponent {
     private activeModal: NgbActiveModal,
     private sessionService: SessionService,
     private fb: FormBuilder,
-    private global: GlobalService
+    private global: GlobalService,
+    private alertService: AlertService
   ) {
     this.createForm();
   }
@@ -72,12 +74,16 @@ export class LoginComponent {
     this.sessionService.login(email, password).subscribe(
       (response: any) => {
         sessionStorage.setItem('x-auth', response.headers.get('x-auth'));
-        this.global.setUser(email, response.body._id);
+        this.global.setUser(response.body);
+        this.sessionService.userChanged.next();
+        this.isLogging = false;
+        this.alertService.addSuccessAlert('Zalogowano pomyślnie!');
         this.activeModal.close('ok');
       },
       err => {
         this.loginError = err.error.message;
-      }, () => this.isLogging = false
+        this.isLogging = false;
+      }
     );
   }
 
