@@ -1,6 +1,6 @@
-<div class="d-flex flex-wrap">
+<div class="d-flex flex-wrap" *ngIf="!isLoading">
     <div class="card m-2 flex-grow-1" *ngFor="let category of services">
-        <div class="card-header">
+        <div class="card-header bg-dark text-white">
             {{category.name}}
         </div>
         <div class="card-body">
@@ -14,5 +14,11 @@
                 </li>
             </ul>
         </div>
+    </div>
+</div>
+<div class="row" [hidden]="!isLoading">
+    <div class="col-12 d-flex flex-column align-items-center">
+        <app-spinner size="big"></app-spinner>
+        <p>Wczytywanie danych</p>
     </div>
 </div>

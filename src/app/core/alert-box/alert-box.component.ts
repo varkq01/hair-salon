@@ -9,7 +9,7 @@ import { Subscription } from 'rxjs';
 })
 export class AlertBoxComponent implements OnInit, OnDestroy {
   alertsSub: Subscription;
-  alerts = [{message: 'Test!', type: 'success'}];
+  alerts = [];
   constructor(private alertS: AlertService) {}
 
   ngOnInit() {

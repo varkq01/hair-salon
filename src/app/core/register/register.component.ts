@@ -12,9 +12,8 @@ import { AlertService } from '../alert-box/alert.service';
 })
 export class RegisterComponent {
   form: FormGroup;
-  submitted = false;
   isRegistering = false;
-  error: string;
+  public error: string;
 
   constructor(
     private modalService: NgbModal,
@@ -60,11 +59,7 @@ export class RegisterComponent {
   }
 
   onRegister() {
-    this.submitted = true;
     this.isRegistering = true;
-    if (this.form.invalid) {
-      return;
-    }
 
     this.sessionService.register(this.form.value).subscribe(
       (response: any) => {

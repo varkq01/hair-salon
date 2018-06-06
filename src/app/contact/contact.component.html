@@ -1,4 +1,4 @@
-<section class="py-3 bg-light view-height ">
+<section class="py-3 bg-light">
   <div class="container">
     <div class="row">
       <div class="col-12 col-sm-7">
@@ -7,25 +7,38 @@
         <p>Wyślij wiadomość, postaramy się odpowiedzieć jak najszybciej.</p>
         <div class="card">
           <div class="card-body">
-            <form>
+            <form [formGroup]="form" novalidate (ngSubmit)="onSubmit()">
               <div class="form-group">
-                <label for="inputEmail3" class="form-label">Imię</label>
-                <input type="text" class="form-control">
+                <label for="firstName" class="form-label">Imię</label>
+                <input type="text" id="firstName" class="form-control" formControlName="firstName">
+                <small class="text-danger" *ngIf="firstName.invalid && firstName.touched">
+                  <ng-template [ngIf]="firstName.errors?.required">Pole wymagane</ng-template>
+                </small>
               </div>
               <div class="form-group">
-                <label for="inputPassword3" class="form-label">Nazwisko</label>
-                <input type="text" class="form-control">
+                <label for="lastName" class="form-label">Nazwisko</label>
+                <input type="text" id="lastName" class="form-control" formControlName="lastName">
+                <small class="text-danger" *ngIf="lastName.invalid && lastName.touched">
+                  <ng-template [ngIf]="lastName.errors?.required">Pole wymagane</ng-template>
+                </small>
               </div>
               <div class="form-group">
-                <label for="inputPassword3" class="form-label">Email</label>
-                <input type="email" class="form-control">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" id="email" class="form-control" formControlName="email">
+                <small class="text-danger" *ngIf="email.invalid && email.touched">
+                  <ng-template [ngIf]="email.errors?.required">Pole wymagane</ng-template>
+                  <ng-template [ngIf]="email.errors?.email">Niepoprawny email</ng-template>
+                </small>
               </div>
               <div class="form-group">
-                <label for="inputPassword3" class="form-label">Wiadomość</label>
-                <textarea class="form-control"></textarea>
+                <label for="message" class="form-label">Wiadomość</label>
+                <textarea class="form-control" id="message" formControlName="message"></textarea>
+                <small class="text-danger" *ngIf="message.invalid && message.touched">
+                  <ng-template [ngIf]="message.errors?.required">Pole wymagane</ng-template>
+                </small>
               </div>
               <div class="form-group">
-                <button type="submit" class="btn btn-primary">Wyślij wiadomość</button>
+                <button type="submit" class="btn btn-primary" [disabled]="form.invalid || isSending">Wyślij wiadomość</button>
               </div>
             </form>
           </div>

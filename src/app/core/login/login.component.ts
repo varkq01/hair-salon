@@ -62,11 +62,7 @@ export class LoginComponent {
   }
 
   onLogin() {
-    this.submitted = true;
     this.isLogging = true;
-    if (this.form.invalid) {
-      return;
-    }
 
     const email = this.form.value['email'];
     const password = this.form.value['password'];

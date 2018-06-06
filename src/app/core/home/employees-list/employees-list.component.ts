@@ -1,33 +1,29 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { EmployeeService } from '../../../employee/employee.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-employees-list',
   templateUrl: './employees-list.component.html',
   styleUrls: ['./employees-list.component.scss']
 })
-export class EmployeesListComponent implements OnInit {
+export class EmployeesListComponent implements OnInit, OnDestroy {
+  public isLoading = false;
+  public dataStream: Subscription;
 
-  public employees = [{
-    firstName: 'Jan',
-    lastName: 'Kowalski',
-    image: 'assets/images/hair-designer.jpg',
-    description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sapien nisi, posuere id ipsum sit amet, 
-    venenatis ultricies ipsum. Maecenas in luctus purus. Praesent laoreet mi urna, nec consectetur est scelerisque id. 
-    Aliquam tortor nunc, fringilla eu congue non, vehicula non turpis. Nam non felis fermentum, pellentesque turpis nec, euismod erat.`,
-    type: 'hair-dresser'
-  }, {
-    firstName: 'Agata',
-    lastName: 'Papuga',
-    image: 'assets/images/agata.jpg',
-    description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sapien nisi, posuere id ipsum sit amet, 
-    venenatis ultricies ipsum. Maecenas in luctus purus. Praesent laoreet mi urna, nec consectetur est scelerisque id. 
-    Aliquam tortor nunc, fringilla eu congue non, vehicula non turpis. Nam non felis fermentum, pellentesque turpis nec, euismod erat.`,
-    type: 'beautician'
-  }]
+  public employees = [];
 
-  constructor() { }
+  constructor(private employeeService: EmployeeService) {}
 
   ngOnInit() {
+    this.dataStream = this.employeeService
+      .getEmployees()
+      .subscribe((response: any) => {
+        this.employees = response.employees;
+      });
   }
 
+  ngOnDestroy(): void {
+    this.dataStream.unsubscribe();
+  }
 }

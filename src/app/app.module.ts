@@ -12,6 +12,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { SessionService } from './core/session.service';
 import { GlobalService } from './core/global.service';
 import { AlertService } from './core/alert-box/alert.service';
+import { ServicesService } from './services/services.service';
+import { ContactService } from './contact/contact.service';
+import { EmployeeService } from './employee/employee.service';
+import { EmployeeModule } from './employee/employee.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -23,9 +27,17 @@ import { AlertService } from './core/alert-box/alert.service';
     SharedModule,
     ServicesModule,
     ContactModule,
-    HistoryModule
+    HistoryModule,
+    EmployeeModule
   ],
-  providers: [SessionService, GlobalService, AlertService],
+  providers: [
+    SessionService,
+    GlobalService,
+    AlertService,
+    ServicesService,
+    ContactService,
+    EmployeeService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

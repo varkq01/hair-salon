@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { GlobalService } from 'src/app/core/global.service';
-import { Subject } from 'rxjs';
+import { Subject, Observable } from 'rxjs';
 
 @Injectable()
 export class SessionService {
@@ -10,25 +10,34 @@ export class SessionService {
   constructor(private global: GlobalService) {}
 
   login(email: string, password: string) {
-    return this.global.post(
-      '/users/login',
-      { email, password },
-      { observe: 'response' }
-    );
-  }
-
-  logout() {
-    return this.global.delete('/users/logout').pipe(response => {
-      this.global.clearSession();
-      return response;
+    return this.global.post('/users/login', { email, password }, true, {
+      observe: 'response'
     });
   }
 
-  register(user: {firstName: string, lastName: string, email: string, password: string}) {
-    return this.global.post(
-      '/users',
-      user,
-      { observe: 'response' }
+  logout() {
+    return this.global.delete('/users/logout').pipe(
+      response => {
+        this.global.clearSession();
+        return response;
+      },
+      err => {
+        this.global.clearSession();
+        return Observable.throw(err);
+      }
     );
+  }
+
+  register(user: {
+    firstName: string;
+    lastName: string;
+    email: string;
+    password: string;
+  }) {
+    return this.global.post('/users', user, true, { observe: 'response' });
+  }
+
+  resetPassword(email: string) {
+    return this.global.post('/users/reset', { email });
   }
 }

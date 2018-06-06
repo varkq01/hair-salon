@@ -7,6 +7,7 @@ import { HairdressingComponent } from './services/hairdressing/hairdressing.comp
 import { CosmeticComponent } from './services/cosmetic/cosmetic.component';
 import { ContactComponent } from './contact/contact.component';
 import { VisitsHistoryComponent } from './visits-history/visits-history.component';
+import { AddEmployeeComponent } from './employee/add-employee/add-employee.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -16,9 +17,10 @@ const appRoutes: Routes = [
     children: [
       { path: '', redirectTo: 'hairdressing', pathMatch: 'full' },
       { path: 'hairdressing', component: HairdressingComponent },
-      { path: 'cosmetic', component: CosmeticComponent }
+      // { path: 'cosmetic', component: CosmeticComponent }
     ]
   },
+  { path: 'employee/add', component: AddEmployeeComponent},
   { path: 'contact', component: ContactComponent },
   { path: 'history', component: VisitsHistoryComponent },
   { path: '**', redirectTo: 'home' }

@@ -19,14 +19,16 @@ export class GlobalService {
     );
   }
 
-  public post(url: string, body?, options?) {
+  public post(url: string, body?, useOptions = false, options?) {
     this.pendingRequests.push(url);
-    console.log(this.pendingRequests.length);
-    const opt = options || { headers: this.getHeaders() };
+    let opt;
+    if (useOptions) {
+      opt = options || { headers: this.getHeaders() };
+    }
     return this.http.post(
       `${this.apiUrl}${url}`,
       body,
-      options || { headers: this.getHeaders() }
+      opt
     );
   }
 

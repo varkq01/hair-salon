@@ -1,74 +1,58 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { ServicesService } from '../services.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-hairdressing',
   templateUrl: './hairdressing.component.html',
   styleUrls: ['./hairdressing.component.scss']
 })
-export class HairdressingComponent implements OnInit {
-  public services = [
-    {
-      name: 'Strzyżenie',
-      services: [
-        { name: 'Strzyżenie', price: 35, type: 'female', time: 60 },
-        {
-          name: 'Strzyżenie i stylizacja',
-          price: 90,
-          type: 'female',
-          time: 90
-        },
-        { name: 'Upięcie/ Loki/ Koki', price: 140, type: 'female', time: 60 },
-        { name: 'Grzywka', price: 15, type: 'female', time: 30 },
-        { name: 'Strzyżenie', price: 20, type: 'male', time: 30 },
-        { name: 'Strzyżenie i stylizacja', price: 45, type: 'male', time: 45 },
-        { name: 'Broda - regulacja', price: 25, type: 'male', time: 30 },
-        { name: 'Broda - golenie', price: 50, type: 'male', time: 45 }
-      ]
-    },
-    {
-      name: 'Koloryzacja',
-      services: [
-        {
-          name: 'Pierwsze farbowanie',
-          description: 'Strzyżenie i stylizacja w cenie',
-          price: 220,
-          type: 'female',
-          time: 120
-        },
-        {
-          name: 'Kolejne farbowanie',
-          description: 'Strzyżenie i stylizacja w cenie',
-          price: 190,
-          type: 'female',
-          time: 120
-        },
-        {
-          name: 'Ombre/ sombre',
-          description: 'Strzyżenie i stylizacja w cenie',
-          price: 240,
-          type: 'female',
-          time: 120
-        },
-        { name: 'Dekoloryzacja', price: 150, type: 'female', time: 60 },
-        { name: 'Farbowanie', price: 90, type: 'male', time: 60 }
-      ]
-    },
-    {
-      name: 'Zabiegi',
-      services: [
-        { name: 'Zabieg kreatynowy', price: 340, type: 'female', time: 60 },
-        {
-          name: 'Reshading',
-          description: 'Zabieg odsiwiania',
-          price: 140,
-          type: 'male',
-          time: 90
-        }
-      ]
-    }
-  ];
+export class HairdressingComponent implements OnInit, OnDestroy {
+  public femaleServices = [];
+  public maleServices = [];
 
-  constructor() {}
+  public isLoading = false;
+  private dataStream: Subscription;
 
-  ngOnInit() {}
+  constructor(private servicesService: ServicesService) {}
+
+  ngOnInit() {
+    this.getData();
+  }
+
+  getData() {
+    this.isLoading = true;
+    this.dataStream = this.servicesService.getHairdressingServices().subscribe(
+      (response: any) => {
+        const services = response.categories.filter(c => c.type === 'hair');
+
+        this.femaleServices = this.getGenderServices('female', services);
+        this.maleServices = this.getGenderServices('male', services);
+
+        this.isLoading = false;
+      },
+      err => {
+        this.isLoading = false;
+      }
+    );
+  }
+
+  getGenderServices(gender: string, services): Array<any> {
+    const gServices = [];
+    services.forEach(c => {
+      const category: any = {};
+      (category.name = c.name),
+        (category.type = c.type),
+        (category.services = c.services.filter(s => s.type === gender));
+      if (category.services.length > 0) {
+        gServices.push(category);
+      }
+    });
+
+    return gServices;
+  }
+
+  ngOnDestroy(): void {
+    this.dataStream.unsubscribe();
+  }
 }
