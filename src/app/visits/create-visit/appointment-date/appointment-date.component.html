@@ -1,0 +1,11 @@
+<h2 class="mt-3">Wybierz termin</h2>
+<ngb-datepicker #dp [(ngModel)]="model" (navigate)="date = $event.next"></ngb-datepicker>
+
+<h2 class="mt-3">Wybierz godzinę</h2>
+<ul class="list-group d-inline">
+  <li class="list-group-item d-inline-block" [ngClass]="{'list-group-item-success': hour.selected}" *ngFor="let hour of ['10:00','11:00','12:00','13:00','14:00','15:00']">{{hour}}</li>
+</ul>
+<div class="d-flex justify-content-end">
+  <button class="btn btn-secondary mr-3" (click)="onBack()">Cofnij</button>
+  <button class="btn btn-primary" (click)="onNext()" [disabled]="!isSelected">Dalej</button>
+</div>

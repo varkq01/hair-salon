@@ -16,11 +16,16 @@ export class EmployeesListComponent implements OnInit, OnDestroy {
   constructor(private employeeService: EmployeeService) {}
 
   ngOnInit() {
-    this.dataStream = this.employeeService
-      .getEmployees()
-      .subscribe((response: any) => {
+    this.isLoading = true;
+    this.dataStream = this.employeeService.getEmployees().subscribe(
+      (response: any) => {
         this.employees = response.employees;
-      });
+        this.isLoading = false;
+      },
+      err => {
+        this.isLoading = false;
+      }
+    );
   }
 
   ngOnDestroy(): void {

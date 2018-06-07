@@ -12,11 +12,18 @@ export class ServicesService {
     return this.global.get('/categories');
   }
 
-  getHairdressingServices() {
-    return this.getAllServices();
-  }
+  getGenderServices(gender: string, services): Array<any> {
+    const gServices = [];
+    services.forEach(c => {
+      const category: any = {};
+      (category.name = c.name),
+        (category.type = c.type),
+        (category.services = c.services.filter(s => s.type === gender));
+      if (category.services.length > 0) {
+        gServices.push(category);
+      }
+    });
 
-  getCosmeticServices() {
-    return this.getAllServices();
+    return gServices;
   }
 }

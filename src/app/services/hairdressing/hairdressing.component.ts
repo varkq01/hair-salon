@@ -22,12 +22,12 @@ export class HairdressingComponent implements OnInit, OnDestroy {
 
   getData() {
     this.isLoading = true;
-    this.dataStream = this.servicesService.getHairdressingServices().subscribe(
+    this.dataStream = this.servicesService.getAllServices().subscribe(
       (response: any) => {
         const services = response.categories.filter(c => c.type === 'hair');
 
-        this.femaleServices = this.getGenderServices('female', services);
-        this.maleServices = this.getGenderServices('male', services);
+        this.femaleServices = this.servicesService.getGenderServices('female', services);
+        this.maleServices = this.servicesService.getGenderServices('male', services);
 
         this.isLoading = false;
       },
@@ -37,20 +37,7 @@ export class HairdressingComponent implements OnInit, OnDestroy {
     );
   }
 
-  getGenderServices(gender: string, services): Array<any> {
-    const gServices = [];
-    services.forEach(c => {
-      const category: any = {};
-      (category.name = c.name),
-        (category.type = c.type),
-        (category.services = c.services.filter(s => s.type === gender));
-      if (category.services.length > 0) {
-        gServices.push(category);
-      }
-    });
 
-    return gServices;
-  }
 
   ngOnDestroy(): void {
     this.dataStream.unsubscribe();

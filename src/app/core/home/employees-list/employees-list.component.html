@@ -1,4 +1,4 @@
-<section class="py-3 bg-light" id="team">
+<section class="py-3 bg-light" id="team" *ngIf="!isLoading">
   <div class="container">
     <h1>Nasza zespół</h1>
     <div class="row mt-3 align-items-center" *ngFor="let employee of employees">
@@ -10,6 +10,12 @@
         <p class="text-secondary">{{employee.position}}</p>
         <p>{{employee.description}}</p>
       </div>      
+    </div>
+    <div class="row" [hidden]="!isLoading">
+      <div class="col-12 d-flex flex-column align-items-center">
+        <app-spinner size="big"></app-spinner>
+        <p>Wczytywanie pracowników</p>
+      </div>
     </div>
   </div>
 </section>

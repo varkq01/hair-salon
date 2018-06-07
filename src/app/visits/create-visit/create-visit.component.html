@@ -1,0 +1,26 @@
+<section class="bg-light py-3">
+  <div class="container">
+    <ngb-tabset #tabSet="ngbTabset" [destroyOnHide]="false" (tabChange)="beforeChange($event)">
+      <ngb-tab id="services" title="1. Umów wizytę">
+        <ng-template ngbTabContent>
+          <app-categories-list (nextClick)="onTabChange('employee')" [femaleCategories]="femaleServices" [maleCategories]="maleServices"></app-categories-list>
+        </ng-template>
+      </ngb-tab>
+      <ngb-tab id="employee" title="2. Fryzjer">
+        <ng-template ngbTabContent>
+          <app-employee-select-list [employees]="employees" (nextClick)="onTabChange('date')" (backClick)="onTabChange('services')"
+            (selectedEmpl)="onEmployeeSelect($event)"></app-employee-select-list>
+        </ng-template>
+      </ngb-tab>
+      <ngb-tab id="date" title="3. Termin">
+        <ng-template ngbTabContent>
+          <app-appointment-date (nextClick)="onTabChange('employee')" (backClick)="onTabChange('confirmation')"></app-appointment-date>
+        </ng-template>
+      </ngb-tab>
+      <ngb-tab id="date" title="4. Potwierdzenie">
+        <ng-template ngbTabContent>
+        </ng-template>
+      </ngb-tab>
+    </ngb-tabset>
+  </div>
+</section>

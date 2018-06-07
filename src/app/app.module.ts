@@ -7,7 +7,6 @@ import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { ServicesModule } from './services/services.module';
 import { ContactModule } from './contact/contact.module';
-import { HistoryModule } from './visits-history/history.module';
 import { HttpClientModule } from '@angular/common/http';
 import { SessionService } from './core/session.service';
 import { GlobalService } from './core/global.service';
@@ -16,6 +15,10 @@ import { ServicesService } from './services/services.service';
 import { ContactService } from './contact/contact.service';
 import { EmployeeService } from './employee/employee.service';
 import { EmployeeModule } from './employee/employee.module';
+import { VisitsModule } from './visits/visits.module';
+import { VisitsService } from './visits/visits.service';
+import { AuthGuardService } from './shared/auth-guard.service';
+import { AdminGuardService } from './shared/admin-guard.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -27,8 +30,8 @@ import { EmployeeModule } from './employee/employee.module';
     SharedModule,
     ServicesModule,
     ContactModule,
-    HistoryModule,
-    EmployeeModule
+    VisitsModule,
+    EmployeeModule,
   ],
   providers: [
     SessionService,
@@ -37,6 +40,9 @@ import { EmployeeModule } from './employee/employee.module';
     ServicesService,
     ContactService,
     EmployeeService,
+    VisitsService,
+    AuthGuardService,
+    AdminGuardService
   ],
   bootstrap: [AppComponent]
 })

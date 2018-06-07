@@ -10,13 +10,13 @@ export class GlobalService {
 
   constructor(private http: HttpClient) {}
 
-  public get(url: string, options?) {
+  public get(url: string, useOptions = false, options?) {
     this.pendingRequests.push(url);
-
-    return this.http.get(
-      `${this.apiUrl}${url}`,
-      options || { headers: this.getHeaders() }
-    );
+    let opt;
+    if (useOptions) {
+      opt = options || { headers: this.getHeaders() };
+    }
+    return this.http.get(`${this.apiUrl}${url}`, opt);
   }
 
   public post(url: string, body?, useOptions = false, options?) {
@@ -25,11 +25,7 @@ export class GlobalService {
     if (useOptions) {
       opt = options || { headers: this.getHeaders() };
     }
-    return this.http.post(
-      `${this.apiUrl}${url}`,
-      body,
-      opt
-    );
+    return this.http.post(`${this.apiUrl}${url}`, body, opt);
   }
 
   public put(url: string, body?, options?) {
@@ -78,6 +74,20 @@ export class GlobalService {
 
   public getAuthToken(): string {
     return sessionStorage.getItem('x-auth');
+  }
+
+  public isAuthenticated(): boolean {
+    return this.getAuthToken() != null;
+  }
+
+  public isAdmin(): boolean {
+    // todo send request to check this data
+    const user = this.getUser();
+    if (user) {
+      return user.isAdmin && this.isAuthenticated();
+    }
+
+    return false;
   }
 
   public clearSession(): void {

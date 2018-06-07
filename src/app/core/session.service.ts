@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { GlobalService } from 'src/app/core/global.service';
 import { Subject, Observable } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 @Injectable()
 export class SessionService {
@@ -21,10 +22,10 @@ export class SessionService {
         this.global.clearSession();
         return response;
       },
-      err => {
+      catchError(err => {
         this.global.clearSession();
         return Observable.throw(err);
-      }
+      })
     );
   }
 
