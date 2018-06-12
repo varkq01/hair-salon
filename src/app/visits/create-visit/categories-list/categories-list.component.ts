@@ -11,8 +11,9 @@ export class CategoriesListComponent implements OnInit {
   form: FormGroup;
   femaleServices = [];
   maleServices = [];
-  selectedServices = [];
+  checkedServices = [];
   @Output() nextClick = new EventEmitter();
+  @Output() selectedServices = new EventEmitter();
 
   @Input() femaleCategories;
   @Input() maleCategories;
@@ -23,17 +24,19 @@ export class CategoriesListComponent implements OnInit {
 
   onAdd(service) {
     service.selected = true;
-    this.selectedServices.push(service);
+    this.checkedServices.push(service);
+    this.selectedServices.next(this.checkedServices);
   }
 
   onDelete(service) {
-    const idx = this.selectedServices.indexOf(service);
+    const idx = this.checkedServices.indexOf(service);
     service.selected = false;
-    this.selectedServices.splice(idx, 1);
+    this.checkedServices.splice(idx, 1);
+    this.selectedServices.next(this.checkedServices);
   }
 
   checkIfDisabled(gender): boolean {
-    return this.selectedServices.filter(s => s.type !== gender).length > 0;
+    return this.checkedServices.filter(s => s.type !== gender).length > 0;
   }
 
   onNext() {

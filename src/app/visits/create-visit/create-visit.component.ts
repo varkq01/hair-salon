@@ -3,6 +3,8 @@ import { NgbTabChangeEvent, NgbTabset } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs';
 import { ServicesService } from '../../services/services.service';
 import { EmployeeService } from '../../employee/employee.service';
+import { VisitsService } from '../visits.service';
+import { AppointmentDateComponent } from './appointment-date/appointment-date.component';
 
 @Component({
   selector: 'app-create-visit',
@@ -17,12 +19,18 @@ export class CreateVisitComponent implements OnInit, OnDestroy {
   maleServices = [];
   employees = [];
   selectedEmployee;
+  selectedServices = [];
+  selectedDate;
+  days = [];
+
 
   @ViewChild('tabSet') tabSet: NgbTabset;
+  @ViewChild('dateTab') dateTab: AppointmentDateComponent;
 
   constructor(
     private servicesService: ServicesService,
-    private es: EmployeeService
+    private es: EmployeeService,
+    private vS: VisitsService
   ) {}
 
   ngOnInit() {
@@ -33,10 +41,6 @@ export class CreateVisitComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.employeesStream.unsubscribe();
     this.servicesStream.unsubscribe();
-  }
-
-  public beforeChange($event: NgbTabChangeEvent) {
-    // $event.preventDefault();
   }
 
   getServices() {
@@ -55,6 +59,15 @@ export class CreateVisitComponent implements OnInit, OnDestroy {
       });
   }
 
+  onSelectedServices(services) {
+    this.selectedServices = services;
+  }
+
+  onSelectedDate(date) {
+    this.selectedDate = date;
+    console.log(this.selectedDate);
+  }
+
   getEmployees() {
     this.employeesStream = this.es.getEmployees().subscribe(
       (response: any) => {
@@ -66,10 +79,11 @@ export class CreateVisitComponent implements OnInit, OnDestroy {
 
   onEmployeeSelect(empl) {
     this.selectedEmployee = empl;
-    console.log(this.selectedEmployee);
   }
 
   onTabChange(tab) {
     this.tabSet.select(tab);
   }
+
+
 }

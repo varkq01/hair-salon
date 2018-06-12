@@ -11,4 +11,8 @@ export class VisitsService {
   getVisits() {
     return this.global.get('/visits', true);
   }
+
+  getHours(duration: number, date: string, employeeID) {
+    return this.global.post('/visits/hours', {duration, date, employeeID});
+  }
 }

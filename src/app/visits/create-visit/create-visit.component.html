@@ -1,23 +1,25 @@
-<section class="bg-light py-3">
+<section class="bg-light py-3 view-height">
   <div class="container">
-    <ngb-tabset #tabSet="ngbTabset" [destroyOnHide]="false" (tabChange)="beforeChange($event)">
+    <ngb-tabset #tabSet="ngbTabset" [destroyOnHide]="false">
       <ngb-tab id="services" title="1. Umów wizytę">
         <ng-template ngbTabContent>
-          <app-categories-list (nextClick)="onTabChange('employee')" [femaleCategories]="femaleServices" [maleCategories]="maleServices"></app-categories-list>
+          <app-categories-list (nextClick)="onTabChange('employee')" (selectedServices)="onSelectedServices($event)" [femaleCategories]="femaleServices" [maleCategories]="maleServices"></app-categories-list>
         </ng-template>
       </ngb-tab>
-      <ngb-tab id="employee" title="2. Fryzjer">
+      <ngb-tab id="employee" title="2. Fryzjer" [disabled]="selectedServices.length === 0">
         <ng-template ngbTabContent>
           <app-employee-select-list [employees]="employees" (nextClick)="onTabChange('date')" (backClick)="onTabChange('services')"
             (selectedEmpl)="onEmployeeSelect($event)"></app-employee-select-list>
         </ng-template>
       </ngb-tab>
-      <ngb-tab id="date" title="3. Termin">
+      <ngb-tab id="date" title="3. Termin" [disabled]="selectedEmployee == null || selectedServices.length === 0">
         <ng-template ngbTabContent>
-          <app-appointment-date (nextClick)="onTabChange('employee')" (backClick)="onTabChange('confirmation')"></app-appointment-date>
+            <app-appointment-date #dateTab (nextClick)="onTabChange('confirmation')" [selectedServices]="selectedServices" [employee]="selectedEmployee"
+             (backClick)="onTabChange('employee')"
+             (hourSelect)="onSelectedDate($event)"></app-appointment-date>
         </ng-template>
       </ngb-tab>
-      <ngb-tab id="date" title="4. Potwierdzenie">
+      <ngb-tab id="confirmation" title="4. Potwierdzenie" [disabled]="selectedEmployee == null || selectedServices.length === 0 || selectedDate == null">
         <ng-template ngbTabContent>
         </ng-template>
       </ngb-tab>
