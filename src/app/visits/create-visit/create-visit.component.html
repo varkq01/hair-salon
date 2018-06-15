@@ -21,6 +21,8 @@
       </ngb-tab>
       <ngb-tab id="confirmation" title="4. Potwierdzenie" [disabled]="selectedEmployee == null || selectedServices.length === 0 || selectedDate == null">
         <ng-template ngbTabContent>
+          <app-confirmation [employee]="selectedEmployee" [services]="selectedServices" [date]="selectedDate"
+          (backClick)="onTabChange('date')" (submit)="onSubmit()"></app-confirmation>
         </ng-template>
       </ngb-tab>
     </ngb-tabset>

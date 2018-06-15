@@ -5,14 +5,32 @@ import { GlobalService } from '../core/global.service';
   providedIn: 'root'
 })
 export class VisitsService {
-
-  constructor(private global: GlobalService) { }
+  constructor(private global: GlobalService) {}
 
   getVisits() {
     return this.global.get('/visits', true);
   }
 
   getHours(duration: number, date: string, employeeID) {
-    return this.global.post('/visits/hours', {duration, date, employeeID});
+    return this.global.post('/visits/hours', { duration, date, employeeID });
+  }
+
+  saveVisit(
+    date: Date,
+    empl: { firstName: string; lastName: string; _id: string },
+    services: Array<any>
+  ) {
+    const employee = {
+      firstName: empl.firstName,
+      lastName: empl.lastName,
+      id: empl._id
+    };
+    const clientMail = this.global.getUser().email;
+    return this.global.post('/visits', {
+      date,
+      employee,
+      services,
+      clientMail
+    });
   }
 }

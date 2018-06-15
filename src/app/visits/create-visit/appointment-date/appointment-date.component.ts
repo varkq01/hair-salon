@@ -30,7 +30,7 @@ export class AppointmentDateComponent implements OnInit {
   set selectedServices(val: Array<any>) {
     if (val) {
       this.services = val;
-      this.getHours();
+      this.getHours(new Date(), true);
     }
   }
 
@@ -38,9 +38,10 @@ export class AppointmentDateComponent implements OnInit {
   set employee(val) {
     if (val) {
       this.empl = val;
-      this.getHours();
+      this.getHours(new Date(), true);
     }
   }
+
 
   constructor(private vS: VisitsService) {}
 

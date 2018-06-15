@@ -1,0 +1,13 @@
+<div class="modal-header">
+  <h4 class="modal-title pull-left">Potwierdenie nowej wizyty</h4>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="onClose()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <p>Czy chcesz umówić wizytę?</p>
+  <div class="d-flex justify-content-end">
+    <button class="btn btn-secondary mr-3" (click)="onClose()">Anuluj</button>
+    <button class="btn btn-success" (click)="onConfirm()">Umów wizytę</button>
+  </div>
+</div>

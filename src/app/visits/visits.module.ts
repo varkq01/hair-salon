@@ -9,6 +9,7 @@ import { EmployeeSelectListComponent } from './create-visit/employee-select-list
 import { AppointmentDateComponent } from './create-visit/appointment-date/appointment-date.component';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
+import { ConfirmationComponent } from './create-visit/confirmation/confirmation.component';
 
 @NgModule({
   imports: [CommonModule, NgbModule, FormsModule, SharedModule],
@@ -17,7 +18,8 @@ import { SharedModule } from '../shared/shared.module';
     CreateVisitComponent,
     CategoriesListComponent,
     EmployeeSelectListComponent,
-    AppointmentDateComponent
+    AppointmentDateComponent,
+    ConfirmationComponent
   ]
 })
 export class VisitsModule {}
