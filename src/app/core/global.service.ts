@@ -20,7 +20,6 @@ export class GlobalService {
   }
 
   public post(url: string, body?, useOptions = false, options?) {
-    this.pendingRequests.push(url);
     let opt;
     if (useOptions) {
       opt = options || { headers: this.getHeaders() };
@@ -28,22 +27,21 @@ export class GlobalService {
     return this.http.post(`${this.apiUrl}${url}`, body, opt);
   }
 
-  public put(url: string, body?, options?) {
-    this.pendingRequests.push(url);
-
-    return this.http.put(
-      `${this.apiUrl}${url}`,
-      options || { headers: this.getHeaders() }
-    );
+  public put(url: string, body?, useOptions = false, options?) {
+    let opt;
+    if (useOptions) {
+      opt = options || { headers: this.getHeaders() };
+    }
+    return this.http.put(`${this.apiUrl}${url}`, body, opt);
   }
 
-  public delete(url: string, options?) {
-    this.pendingRequests.push(url);
+  public delete(url: string, useOptions = false, options?) {
+    let opt;
+    if (useOptions) {
+      opt = options || { headers: this.getHeaders() };
+    }
 
-    return this.http.delete(
-      `${this.apiUrl}${url}`,
-      options || { headers: this.getHeaders() }
-    );
+    return this.http.delete(`${this.apiUrl}${url}`, opt);
   }
 
   public getHeaders(): HttpHeaders {

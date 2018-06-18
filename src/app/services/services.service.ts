@@ -13,17 +13,20 @@ export class ServicesService {
   }
 
   getGenderServices(gender: string, services): Array<any> {
-    const gServices = [];
-    services.forEach(c => {
-      const category: any = {};
-      (category.name = c.name),
-        (category.type = c.type),
-        (category.services = c.services.filter(s => s.type === gender));
-      if (category.services.length > 0) {
-        gServices.push(category);
-      }
-    });
 
-    return gServices;
+    return services.filter(s => s.type === gender);
+  }
+
+  addService(service) {
+    return this.global.post('/categories', service, true);
+  }
+
+
+  updateService(id, service) {
+    return this.global.put('/categories/' + id, service, true);
+  }
+
+  deleteService(id) {
+    return this.global.delete('/categories/' + id, true);
   }
 }

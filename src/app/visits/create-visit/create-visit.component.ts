@@ -128,6 +128,10 @@ export class CreateVisitComponent implements OnInit, OnDestroy {
       centered: true
     });
 
+    this.confirmationModal.componentInstance.title = 'Potwierdenie nowej wizyty';
+    this.confirmationModal.componentInstance.body = 'Czy chcesz umówić wizytę?';
+    this.confirmationModal.componentInstance.label = 'Umów wizytę';
+
     this.confirmationModal.result.then(
       result => {
         if (result === 'ok') {

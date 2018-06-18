@@ -1,8 +1,14 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ChangeDetectorRef,
+  Input,
+} from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { EmployeeService } from '../employee.service';
 import { Observable } from 'rxjs';
 import { AlertService } from '../../core/alert-box/alert.service';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-add-employee',
@@ -11,6 +17,24 @@ import { AlertService } from '../../core/alert-box/alert.service';
 })
 export class AddEmployeeComponent {
   public isLoading = false;
+
+
+  @Input() title: string;
+  @Input() editMode = false;
+  @Input()
+  set employee(empl) {
+    if (empl) {
+      this.form.patchValue({
+        firstName: empl.firstName,
+        lastName: empl.lastName,
+        position: empl.position,
+        description: empl.description,
+        file: empl.image
+      });
+      this.editMode = true;
+    }
+  }
+
   form = this.fb.group({
     firstName: this.fb.control('', Validators.required),
     lastName: this.fb.control('', Validators.required),
@@ -39,7 +63,8 @@ export class AddEmployeeComponent {
     private fb: FormBuilder,
     private cd: ChangeDetectorRef,
     private eS: EmployeeService,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private activeModal: NgbActiveModal,
   ) {}
 
   onFileChange(event) {
@@ -48,7 +73,6 @@ export class AddEmployeeComponent {
     if (event.target.files && event.target.files.length) {
       const [file] = event.target.files;
       reader.readAsDataURL(file);
-
       reader.onload = () => {
         this.form.patchValue({
           file: reader.result
@@ -61,21 +85,10 @@ export class AddEmployeeComponent {
   }
 
   onSubmit() {
-    this.isLoading = true;
-    this.eS.add(this.form.value).subscribe(
-      res => {
-        this.alertService.addSuccessAlert('Dodano nowego pracownika!');
-        this.isLoading = false;
-        this.form.reset();
-      },
-      err => {
-        console.log(err);
-        Observable.throw(err);
-        this.alertService.addWarningAlert(
-          'Wystąpił błąd, zmień dane i spróbuj ponownie.'
-        );
-        this.isLoading = false;
-      }
-    );
+    this.activeModal.close({status: 'ok', employee: this.form.value});
+  }
+
+  onClose() {
+    this.activeModal.dismiss();
   }
 }

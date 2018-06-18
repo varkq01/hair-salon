@@ -59,4 +59,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
       this.isLoggedIn = false;
     }
   }
+
+  get isAdmin() {
+    return this.globalService.isAdmin();
+  }
 }

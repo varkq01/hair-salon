@@ -1,0 +1,34 @@
+<div class="d-flex align-items-center justify-content-between">
+  <h2>Lista pracowników</h2>
+  <button class="btn btn-success" (click)="onAdd()">
+    <span class="fa fa-plus mr-1"></span>
+    <span>Dodaj</span>
+  </button>
+</div>
+<div class="row" *ngIf="!isLoading">
+  <div class="col-12 col-sm-6 col-md-4 mb-3 mb-sm-0" *ngFor="let employee of employees">
+    <div class="card position-relative" [ngClass]="{'border-success bg-l': employee.selected}">
+      <img class="card-img-top img-fluid" [src]="employee.image" alt="{{employee.lastName + 'employee photo'}} ">
+      <span class="check-icon fa fa-check-circle text-success" [hidden]="!employee.selected"></span>
+      <div class="card-body">
+        <h5 class="card-title mb-0+">{{employee.firstName}} {{employee.lastName}}</h5>
+        <p class="card-text text-muted text-small">{{employee.position}}</p>
+        <p class="card-text">{{employee.description}}</p>
+        <button class="btn btn-primary btn-block" (click)="onEdit(employee)">
+          <span class="fa fa-edit mr-1"></span>
+          <span>Edytuj</span>
+        </button>
+        <button class="btn btn-danger btn-block" (click)="onDelete(employee._id)">
+          <span class="fa fa-trash mr-1"></span>
+          <span>Usuń</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row" [hidden]="!isLoading">
+  <div class="col-12 d-flex flex-column align-items-center">
+    <app-spinner size="big"></app-spinner>
+    <p>Wczytywanie pracowników</p>
+  </div>
+</div>

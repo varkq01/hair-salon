@@ -11,6 +11,14 @@ export class EmployeeService {
   }
 
   add(employee: {file: string, firstName: string, lastName: string, position: string, description: string}) {
-    return this.global.post('/employees', {...employee}, true);
+    return this.global.post('/employees', { ...employee }, true);
+  }
+
+  update(id, employee: {file: string, firstName: string, lastName: string, position: string, description: string}) {
+    return this.global.put('/employees/' + id, { ...employee },  true);
+  }
+
+  delete(id) {
+    return this.global.delete('/employees/' + id, true);
   }
 }

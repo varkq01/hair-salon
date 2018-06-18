@@ -5,9 +5,9 @@
       <img class="card-img-top img-fluid" [src]="employee.image" alt="{{employee.lastName + 'employee photo'}} ">
       <span class="check-icon fa fa-check-circle text-success" [hidden]="!employee.selected"></span>
       <div class="card-body">
-        <h5 class="card-title">{{employee.firstName}} {{employee.lastName}}</h5>
-        <p class="card-text">{{employee.description}}</p>
+        <h5 class="card-title mb-0">{{employee.firstName}} {{employee.lastName}}</h5>
         <p class="card-text text-muted text-small">{{employee.position}}</p>
+        <p class="card-text">{{employee.description}}</p>
         <button class="btn btn-success btn-block" (click)="onAdd(employee)">Wybierz</button>
       </div>
     </div>

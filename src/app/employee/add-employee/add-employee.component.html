@@ -1,26 +1,30 @@
-<div class="container">
-  <div class="row">
-    <div class="col-6">
-
-
-      <form [formGroup]="form" novalidate (ngSubmit)="onSubmit()">
+<div class="modal-header">
+  <h4 class="modal-title pull-left">{{title}}</h4>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="onClose()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form [formGroup]="form" novalidate (ngSubmit)="onSubmit()">
+    <div class="row">
+      <div class="col-12">
         <div class="form-group">
           <label for="firstName">Imię</label>
-          <input type="text" class="form-control" id="firstName" formControlName="firstName" aria-describedby="emailHelp">
+          <input type="text" class="form-control" id="firstName" formControlName="firstName">
           <small class="text-danger" *ngIf="firstName.invalid && firstName.touched">
             <ng-template [ngIf]="firstName.errors?.required">Pole wymagane</ng-template>
           </small>
         </div>
         <div class="form-group">
           <label for="lastName">Nazwisko</label>
-          <input type="text" class="form-control" id="lastName" formControlName="lastName" aria-describedby="emailHelp">
+          <input type="text" class="form-control" id="lastName" formControlName="lastName">
           <small class="text-danger" *ngIf="lastName.invalid && lastName.touched">
             <ng-template [ngIf]="lastName.errors?.required">Pole wymagane</ng-template>
           </small>
         </div>
         <div class="form-group">
           <label for="position">Stanowisko</label>
-          <input type="text" class="form-control" id="position" formControlName="position" aria-describedby="emailHelp">
+          <input type="text" class="form-control" id="position" formControlName="position">
           <small class="text-danger" *ngIf="position.invalid && position.touched">
             <ng-template [ngIf]="position.errors?.required">Pole wymagane</ng-template>
           </small>
@@ -32,12 +36,16 @@
             <ng-template [ngIf]="description.errors?.required">Pole wymagane</ng-template>
           </small>
         </div>
-        <div class="custom-file">
-          <input type="file" class="custom-file-input" (change)="onFileChange($event)" />
-          <label class="custom-file-label" for="validatedCustomFile">Wybierz plik...</label>
+        <div class="form-group">
+          <label class="form-label" for="firstName">Zdjęcie</label>
+          <img class="img-fluid" [src]="form.controls['file'].value" *ngIf="form.controls['file'].value">
+          <input type="file" class="form-control" (change)="onFileChange($event)" />
         </div>
-        <button class="btn btn-success" type="submit" [disabled]="form.invalid">Stwórz</button>
-      </form>
+      </div>
     </div>
-  </div>
+    <div class="d-flex justify-content-end mt-3">
+      <button class="btn btn-secondary mr-3" type="button" (click)="onClose()">Anuluj</button>
+      <button class="btn btn-success" type="submit" [disabled]="form.invalid">{{label}}</button>
+    </div>
+  </form>
 </div>

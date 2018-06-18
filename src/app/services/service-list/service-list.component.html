@@ -1,0 +1,92 @@
+<div class="d-flex align-items-center justify-content-between">
+  <h2>Lista usług</h2>
+  <button class="btn btn-success" (click)="onAdd()">
+    <span class="fa fa-plus mr-1"></span>
+    <span>Dodaj</span>
+  </button>
+</div>
+<ngb-tabset justify="center" *ngIf="!isLoading" type="pills" #t="ngbTabset" [destroyOnHide]="false">
+  <ngb-tab id="female" title="Damskie">
+    <ng-template ngbTabContent>
+      <div class="d-flex flex-column align-items-center">
+        <div class="icon-container my-3 rounded-circle bg-white">
+          <img src="assets/icons/woman.png" class="d-block w-100 rounded-circle">
+        </div>
+      </div>
+      <div class="card mb-3" *ngFor="let category of femaleServices">
+        <div class="card-header bg-dark text-white">
+          <div class="d-flex align-items-center justify-content-between">
+            <p class="mb-0">
+              {{category.name}}
+            </p>
+            <div>
+              <button class="btn btn-primary mr-1" (click)="onEdit(category)">
+                <span class="fa fa-edit"></span> Edytuj
+              </button>
+              <button class="btn btn-danger" (click)="onDelete(category._id)">
+                <span class="fa fa-minus"></span> Usuń
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let service of category.services">
+              <div>
+                <p class="mb-0">{{service.name}}</p>
+                <p class="mb-0 small">{{service.description}}</p>
+                <p class="mb-0 small">Czasowany czas usługi: {{service.time}} minut</p>
+                <span class="badge badge-primary badge-pill">{{service.price}} zł</span>
+              </div>
+
+            </li>
+          </ul>
+        </div>
+      </div>
+    </ng-template>
+  </ngb-tab>
+  <ngb-tab id="male" title="Męskie">
+    <ng-template ngbTabContent>
+      <div class="d-flex flex-column align-items-center">
+        <div class="icon-container my-3 rounded-circle bg-white">
+          <img src="assets/icons/man.png" class="d-block w-100 rounded-circle">
+        </div>
+      </div>
+      <div class="card mb-3" *ngFor="let category of maleServices">
+        <div class="card-header bg-dark text-white">
+          <div class="d-flex align-items-center justify-content-between">
+            <p class="mb-0">
+              {{category.name}}
+            </p>
+            <div>
+              <button class="btn btn-primary mr-1" (click)="onEdit(service)">
+                <span class="fa fa-edit"></span> Edytuj
+              </button>
+              <button class="btn btn-danger" (click)="onDelete(service)">
+                <span class="fa fa-minus"></span> Usuń
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let service of category.services">
+              <div>
+                <p class="mb-0">{{service.name}}</p>
+                <p class="mb-0 small">{{service.description}}</p>
+                <p class="mb-0 small">Czasowany czas usługi: {{service.time}} minut</p>
+                <span class="badge badge-primary badge-pill">{{service.price}} zł</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </ng-template>
+  </ngb-tab>
+</ngb-tabset>
+<div class="row" *ngIf="isLoading">
+  <div class="col-12 d-flex flex-column align-items-center">
+    <app-spinner size="big"></app-spinner>
+    <p>Wczytywanie usług</p>
+  </div>
+</div>
