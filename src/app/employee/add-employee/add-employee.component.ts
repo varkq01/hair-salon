@@ -18,9 +18,8 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 export class AddEmployeeComponent {
   public isLoading = false;
 
-
+  @Input() label: string;
   @Input() title: string;
-  @Input() editMode = false;
   @Input()
   set employee(empl) {
     if (empl) {
@@ -31,7 +30,6 @@ export class AddEmployeeComponent {
         description: empl.description,
         file: empl.image
       });
-      this.editMode = true;
     }
   }
 

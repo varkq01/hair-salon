@@ -24,7 +24,7 @@ export class HairdressingComponent implements OnInit, OnDestroy {
     this.isLoading = true;
     this.dataStream = this.servicesService.getAllServices().subscribe(
       (response: any) => {
-        const services = response.categories.filter(c => c.type === 'hair');
+        const services = response.categories;
 
         this.femaleServices = this.servicesService.getGenderServices('female', services);
         this.maleServices = this.servicesService.getGenderServices('male', services);

@@ -33,13 +33,18 @@
             </small>
           </div>
           <div class="form-group">
-            <label for="password">Hasło</label>
-            <input type="password" class="form-control" id="password" formControlName="password">
-            <small class="text-danger" *ngIf="password.invalid && password.touched">
-              <ng-template [ngIf]="password.errors?.required">Pole wymagane</ng-template>
-              <ng-template [ngIf]="password.errors?.minlength">Hasło musi mieć 6 znaków</ng-template>
-            </small>
-          </div>
+              <label for="password">Hasło</label>
+              <div class="input-group">
+              <input [type]="isHidden ? 'password' : 'text'" class="form-control" id="password" formControlName="password">
+              <div class="input-group-append">
+                <button class="btn" type="button" (click)="onShowPassword()"><span class="fa fa-eye"></span></button>
+              </div>
+              </div>
+              <small class="text-danger" *ngIf="password.invalid && password.touched">
+                <ng-template [ngIf]="password.errors?.required">Pole wymagane</ng-template>
+              <ng-template [ngIf]="password.errors?.minlength">Hasło musi mieć 6 znaków</ng-template>                
+              </small>
+            </div>
         </div>
         <div class="col-12 d-flex flex-column">
           <button type="submit" class="btn btn-lg btn-primary" [disabled]="form.invalid || isRegistering">

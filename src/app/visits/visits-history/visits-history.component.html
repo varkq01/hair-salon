@@ -1,6 +1,6 @@
 <section class="py-3 bg-light view-height ">
   <div class="container">
-    <div class="row">
+    <div class="row" *ngIf="!isLoading">
       <div class="col-12">
         <h2>Historia wizyt</h2>
         <ul class="list-group">
@@ -24,6 +24,12 @@
             </div>
           </li>
         </ul>
+      </div>
+    </div>
+    <div class="row" *ngIf="isLoading">
+      <div class="col-12 d-flex flex-column align-items-center">
+        <app-spinner size="big"></app-spinner>
+        <p>Wczytywanie wizyt</p>
       </div>
     </div>
   </div>

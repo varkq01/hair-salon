@@ -5,6 +5,7 @@ import { GlobalService } from '../global.service';
 import { SessionService } from '../session.service';
 import { Subscription } from 'rxjs';
 import { AlertService } from '../alert-box/alert.service';
+import { ChangePasswordComponent } from '../change-password/change-password.component';
 
 @Component({
   selector: 'app-header',
@@ -58,6 +59,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
     } else {
       this.isLoggedIn = false;
     }
+  }
+
+  onChangePassword() {
+    this.modalRef = this.modalService.open(ChangePasswordComponent, {
+      centered: true
+    });
   }
 
   get isAdmin() {

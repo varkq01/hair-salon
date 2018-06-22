@@ -19,12 +19,10 @@ import { VisitsModule } from './visits/visits.module';
 import { VisitsService } from './visits/visits.service';
 import { AuthGuardService } from './shared/auth-guard.service';
 import { AdminGuardService } from './shared/admin-guard.service';
-import { StatisticsComponent } from './dashboard/statistics/statistics.component';
-import { VisitsEditComponent } from './dashboard/visits-edit/visits-edit.component';
 import { DashboardModule } from './dashboard/dashboard/dashboard.module';
 
 @NgModule({
-  declarations: [AppComponent, StatisticsComponent,  VisitsEditComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     HttpClientModule,

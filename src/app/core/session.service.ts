@@ -17,15 +17,11 @@ export class SessionService {
   }
 
   logout() {
-    return this.global.delete('/users/logout').pipe(
+    return this.global.delete('/users/logout', true).pipe(
       response => {
         this.global.clearSession();
         return response;
       },
-      catchError(err => {
-        this.global.clearSession();
-        return Observable.throw(err);
-      })
     );
   }
 
@@ -40,5 +36,9 @@ export class SessionService {
 
   resetPassword(email: string) {
     return this.global.post('/users/reset', { email });
+  }
+
+  changePassword(values: {currentPassword: string, newPassword: string}) {
+    return this.global.put('/users/change', values, true);
   }
 }

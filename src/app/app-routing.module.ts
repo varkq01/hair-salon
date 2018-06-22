@@ -11,10 +11,9 @@ import { AdminGuardService } from './shared/admin-guard.service';
 import { AuthGuardService } from './shared/auth-guard.service';
 import { CreateVisitComponent } from './visits/create-visit/create-visit.component';
 import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
-import { StatisticsComponent } from './dashboard/statistics/statistics.component';
-import { VisitsEditComponent } from './dashboard/visits-edit/visits-edit.component';
 import { EmployeeListComponent } from './employee/employee-list/employee-list.component';
 import { ServiceListComponent } from './services/service-list/service-list.component';
+import { AllVisitsComponent } from './visits/all-visits/all-visits.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -26,12 +25,12 @@ const appRoutes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent,
+    canActivate: [AdminGuardService],
     children: [
-      {path: 'statistics', component: StatisticsComponent},
       {path: 'employees', component: EmployeeListComponent},
       {path: 'services', component: ServiceListComponent},
-      {path: 'visits', component: VisitsEditComponent},
-      {path: '', redirectTo: 'statistics', pathMatch: 'full'},
+      {path: 'visits', component: AllVisitsComponent},
+      {path: '', redirectTo: 'employees', pathMatch: 'full'},
     ]
   },
   { path: 'employee/add', component: AddEmployeeComponent, canActivate: [AdminGuardService] },

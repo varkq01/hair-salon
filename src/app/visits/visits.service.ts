@@ -15,6 +15,14 @@ export class VisitsService {
     return this.global.post('/visits/hours', { duration, date, employeeID });
   }
 
+  getAllVisits() {
+    return this.global.get('/visits/all', true);
+  }
+
+  cancelVisit(id: string, reason: string) {
+    return this.global.put('/visits/cancel/' + id, { reason }, true);
+  }
+
   saveVisit(
     date: Date,
     empl: { firstName: string; lastName: string; _id: string },

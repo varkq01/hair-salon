@@ -18,6 +18,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AlertBoxComponent } from './alert-box/alert-box.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { AlertBoxComponent } from './alert-box/alert-box.component';
     LoginComponent,
     PasswordResetComponent,
     RegisterComponent,
-    AlertBoxComponent
+    AlertBoxComponent,
+    ChangePasswordComponent
   ],
   imports: [AppRoutingModule, SharedModule, NgbModule.forRoot(), FormsModule, ReactiveFormsModule],
   exports: [
@@ -48,7 +50,8 @@ import { AlertBoxComponent } from './alert-box/alert-box.component';
     ImagePreviewComponent,
     LoginComponent,
     RegisterComponent,
-    PasswordResetComponent
+    PasswordResetComponent,
+    ChangePasswordComponent
   ]
 })
 export class CoreModule {}

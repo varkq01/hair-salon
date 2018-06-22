@@ -13,6 +13,7 @@ import { AlertService } from '../alert-box/alert.service';
 export class RegisterComponent {
   form: FormGroup;
   isRegistering = false;
+  isHidden = true;
   public error: string;
 
   constructor(
@@ -40,6 +41,14 @@ export class RegisterComponent {
 
   get lastName() {
     return this.form.get('lastName');
+  }
+
+  onShowPassword() {
+    this.isHidden = !this.isHidden;
+
+    setTimeout(() => {
+      this.isHidden = true;
+    }, 2000);
   }
 
   createForm() {

@@ -7,19 +7,24 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CategoriesListComponent } from './create-visit/categories-list/categories-list.component';
 import { EmployeeSelectListComponent } from './create-visit/employee-select-list/employee-select-list.component';
 import { AppointmentDateComponent } from './create-visit/appointment-date/appointment-date.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { ConfirmationComponent } from './create-visit/confirmation/confirmation.component';
+import { AllVisitsComponent } from './all-visits/all-visits.component';
+import { CancelVisitModalComponent } from './cancel-visit-modal/cancel-visit-modal.component';
 
 @NgModule({
-  imports: [CommonModule, NgbModule, FormsModule, SharedModule],
+  imports: [CommonModule, NgbModule, FormsModule, ReactiveFormsModule, SharedModule],
   declarations: [
     VisitsHistoryComponent,
     CreateVisitComponent,
     CategoriesListComponent,
     EmployeeSelectListComponent,
     AppointmentDateComponent,
-    ConfirmationComponent
-  ]
+    ConfirmationComponent,
+    AllVisitsComponent,
+    CancelVisitModalComponent
+  ],
+  entryComponents: [CancelVisitModalComponent]
 })
 export class VisitsModule {}
