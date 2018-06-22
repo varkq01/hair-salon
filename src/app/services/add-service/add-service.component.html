@@ -73,9 +73,6 @@
                     <div class="form-group">
                       <label class="form-control-label">Opis</label>
                       <textarea class="form-control" formControlName="description"></textarea>
-                      <small class="text-danger" *ngIf="service.controls['description'].invalid && service.controls['description'].touched">
-                        <ng-template [ngIf]="service.controls['description'].errors?.required">Pole wymagane</ng-template>
-                      </small>
                     </div>
                   </div>
                 </div>

@@ -4,7 +4,7 @@ import { Subject } from 'rxjs';
 
 @Injectable()
 export class GlobalService {
-  private apiUrl = 'https://calm-river-19302.herokuapp.com';
+  private apiUrl = '/api';
   public pendingRequests = [];
   public loadingData = new Subject<boolean>();
 

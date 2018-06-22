@@ -60,10 +60,14 @@ export class AddServiceComponent implements OnInit {
   createServiceFG() {
     return this.fb.group({
       name: this.fb.control('', Validators.required),
-      description: this.fb.control('', Validators.required),
+      description: this.fb.control(''),
       price: this.fb.control(null, [Validators.required, Validators.min(0)]),
       time: this.fb.control(null, [Validators.required, Validators.min(0)])
     });
+  }
+
+  onRemove(idx) {
+    this.services.controls.splice(idx, 1);
   }
 
 
