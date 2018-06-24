@@ -47,7 +47,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.sessionService.logout().subscribe(resp => {
       this.isLoggedIn = false;
       this.alertService.addSuccessAlert('Wylogowano pomyślnie!');
-      // todo emit event that user has been logged out
+      this.sessionService.userChanged.next();
     });
   }
 

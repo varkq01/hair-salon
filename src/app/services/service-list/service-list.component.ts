@@ -78,7 +78,7 @@ export class ServiceListComponent implements OnInit, OnDestroy {
   saveCategory(service) {
     this.sS.addService(service).subscribe(
       res => {
-        this.alertService.addSuccessAlert('Dodano nowegą kategorię!');
+        this.alertService.addSuccessAlert('Dodano nową kategorię!');
         this.getServices();
       },
       err => {

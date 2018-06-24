@@ -35,7 +35,7 @@
               <div>
                 <p class="mb-0">{{service.name}}</p>
                 <p class="mb-0 small">{{service.description}}</p>
-                <p class="mb-0 small">Czasowany czas usługi: {{service.time}} minut</p>
+                <p class="mb-0 small">Szacowany czas usługi: {{service.time}} minut</p>
                 <span class="badge badge-primary badge-pill">{{service.price}} zł</span>
               </div>
 
@@ -59,10 +59,10 @@
               {{category.name}}
             </p>
             <div>
-              <button class="btn btn-primary mr-1" (click)="onEdit(service)">
+              <button class="btn btn-primary mr-1" (click)="onEdit(category)">
                 <span class="fa fa-edit"></span> Edytuj
               </button>
-              <button class="btn btn-danger" (click)="onDelete(service)">
+              <button class="btn btn-danger" (click)="onDelete(category._id)">
                 <span class="fa fa-minus"></span> Usuń
               </button>
             </div>
@@ -74,7 +74,7 @@
               <div>
                 <p class="mb-0">{{service.name}}</p>
                 <p class="mb-0 small">{{service.description}}</p>
-                <p class="mb-0 small">Czasowany czas usługi: {{service.time}} minut</p>
+                <p class="mb-0 small">Szacowany czas usługi: {{service.time}} minut</p>
                 <span class="badge badge-primary badge-pill">{{service.price}} zł</span>
               </div>
             </li>
